@@ -4,8 +4,10 @@
 ]{article}
 
 % Packages
+\usepackage{natbib}
+%\usepackage{abntex2cite}
 \usepackage[utf8]{inputenc}
-\usepackage[brazilian]{babel}
+\usepackage[english, brazilian]{babel}
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
 \usepackage{fancyhdr}
@@ -22,7 +24,7 @@
 % Meta
 \title{
     Web em Tempo Real \\
-    \begin{large} 
+    \begin{large} %Subtitle
       Soluções para comunicação em tempo real entre clientes e servidores
     \end{large}
 }
@@ -31,8 +33,13 @@
 % End Meta
 
 \begin{document}
-
+	
 \maketitle
+
+{ \clearpage
+	\bibliographystyle{apalike}
+	\bibliography{./src/referencias}
+}
 
 \end{document}
 
