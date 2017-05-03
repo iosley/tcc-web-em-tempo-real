@@ -1,0 +1,58 @@
+\section{Referencial Teórico}
+
+Em agosto de 1962, foi previsto um conjunto global interconectado de computadores através do qual todos poderiam acessar dados e programas, descrito em memorandos escritos por J.C.R. Licklider do MIT quando este discutiu sobre o conceito de "Rede Galáctica", conceito este muito semelhante com a internet de hoje \citep[p.~2]{Leiner2009}.
+
+\subsection{O protocolo TCP}
+
+Sendo a internet uma coleção de comunidades e tecnologias \citep[p.~106]{Leiner1997}, precisamos entender que o protocolo TCP veio posterior a internet, sucedendo e substituindo o protocolo NCP.
+
+O protocolo TCP vinha sendo implementado desde 1980 mas foi somente em 1983 que a transição definitiva aconteceu, exigindo que todos os hosts convertessem simultaneamente para que continuassem funcionando \citep[p.~7]{Leiner2009}.
+
+\subsection{A Word Wide Web}
+
+De acordo com \citet{Aghaei2012}, somente em 1989, Tim Berners-Lee sugere a criação de um espaço de hipertexto global na qual qualquer informação acessível seria referida por um único Identificador de Documento Universal (UDI), este espaço seria posteriormente conhecido por Word Wide Web (WWW) ou simplesmente Web.
+
+Ainda segundo \citet{Aghaei2012}, as principais tecnologias da Web eram:
+\begin{description}
+	\item[Hypertext Markup Language (HTML)] que segundo \citet{Berners-Lee1993}: é uma linguagem de marcação usada para criar documentos de hipertexto
+
+	\item[Identificador Uniforme de Recurso (URI)]  que segundo \citet{Connolly2000}: é o identificador de fragmento que designa o elemento com o nome correspondente
+
+	\item[Protocolo de comunicação HTTP] que segundo \citet[p.~7]{Fielding1999}: "O HTTP é um protocolo de nível de aplicação para sistemas de informação distribuídos, colaborativos e hipermídia."
+\end{description}
+
+\subsubsection{O protocolo HTTP}
+Em uso desde 1990, teve sua primeira versão referida como HTTP / 0.9. Era um protocolo simples para transferência de dados através da internet. A partir da versão 1.0, o protocolo foi melhorado permitindo modificadores sobre a semântica "requisição / resposta" para que duas aplicações determinassem as capacidades verdadeiras de cada uma \citep[p.~7]{Fielding1999}.
+
+\subsubsection{A Web 1.0}
+Era uma Web somente leitura, estática e mono-direcional. O principal objetivo era publicar informações para e estabelecer uma presença on-line. Os sites eram estáticos e não interativos. Os Usuários não poderiam fazer contribuições nem interagir com os sites, sendo estes meros panfletos digitais \citep[p.~2-3]{Aghaei2012}.
+
+\subsubsection{A Web 2.0}
+A medida que as os desenvolvedores começaram a criar páginas cada vez mais dinâmicas, foi se fazendo necessário o uso de técnicas para melhorar a comunicação. Em 1999 quando o Internet Explorer 5 implementou o AJAX pela primeira vez \citep{Asleson2006}, as páginas web já podiam ser muito mais flexíveis e rápidas, já não era mais preciso sair da página para buscar informação no servidor, mas ainda não havia uma maneira do servidor enviar mensagens espontaneamente para o cliente.
+
+\subsection{Limitações do protocolo HTTP}
+
+No modelo HTTP padrão, um servidor não inicia uma conexão com um cliente, enviando respostas somente quando solicitado. Assim, não é possível que um servidor envie eventos assíncronos para aplicações clientes, forçando o cliente à pesquisar periodicamente por novos conteúdos no servidor, o que consome uma quantidade significativa de trafego de dados e reduz a capacidade de resposta da aplicação, pois o servidor precisa ser requisitado para enviar as atualizações \citep{Loreto2011}.
+
+\subsection{Soluções paliativas}
+
+Várias técnicas foram implementadas nos últimos anos para permitir que um servidor web envie atualizações para clientes sem esperar por uma solicitação de pesquisa do cliente. Segundo \citet[p.~3]{Loreto2011}, "Esses mecanismos podem fornecer atualizações aos clientes de forma mais atempada, evitando a latência experimentada pelas aplicações clientes devido à frequente abertura e fechamento de conexões necessárias para periodicamente pesquisar dados”.
+
+Dentre as técnicas, \citet{Loreto2011} destacam:
+\begin{description}
+	\item[Long Polling HTTP:] O servidor tenta "manter aberta" (não responder imediatamente) a cada solicitação HTTP, respondendo apenas quando há novos dados para entregar. Desta forma, existe sempre um pedido pendente ao qual o servidor pode responder com o objectivo de disparar eventos à medida que ocorrem, minimizando assim a latência na entrega de mensagens.
+
+	\item[HTTP Streaming:] O servidor mantém uma solicitação aberta indefinidamente, ou seja, nunca finaliza a resposta ou fecha a conexão, mesmo depois de enviar dados para o cliente.
+\end{description}
+
+É importante entender que estas soluções nem sempre são eficazes e para alguns casos uma busca periódica pode até ser mais eficiente, como é o exemplo de aplicações com alto volume de mensagens, onde o Long Polling não oferece melhorias de desempenho se comparado a sondagem tradicional porque a reconexão é constante \citep{Wang2013}.
+
+Já o Streaming, mesmo sendo uma grande solução, entrega mensagens de maneira imprevisível. Alguns proxies e firewalls podem guardar em memória a resposta o que pode resultar em uma maior latência, não sendo recomenda para redes onde existam firewalls ou proxies \citep[p.~6]{Wang2013}.
+
+\subsection{Soluções atuais}
+
+Para eliminar estes problemas, a sessão de conexão do HTML5 inclui o WebSocket. Segundo \citet[p.~47, Tradução~nossa]{Pimentel2012}, "O protocolo WebSocket fornece um canal de comunicação bidirecional, que opera através de um único soquete na Web e pode ajudar a criar aplicativos escaláveis em tempo real da Web”.
+
+O protocolo consiste de um handshake de abertura seguido pelo enquadramento básico da mensagem, em camadas sobre TCP para permitir uma comunicação bidirecional entre um cliente e servidor. Utiliza o HTTP como uma camada de transporte para se beneficiar da infra estrutura existente, porem não se limita ao HTTP e implementações futuras podem usar um handshake mais simples sem reinventar todo o protocolo \citep{Saint-Andre2011}.
+
+Vale ressaltar que, Websockets se mostra o melhor cenário para uma conexão full-duplex entre cliente e servidor, no entanto, se o serviço apenas transmite informações para seus clientes e não requer qualquer interatividade, usar a API de EventSource fornecida pelo Server-Sent Events (SSE), que faz parte da especificação HTML5, pode ser uma boa opção pois é possível usar o SSE como uma sintaxe comum interoperável para Polling HTTP, Polling longo e Streaming \citep[p.~10-11]{Wang2013}.
