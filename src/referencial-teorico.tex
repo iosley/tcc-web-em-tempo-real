@@ -51,8 +51,8 @@ Já o Streaming, mesmo sendo uma grande solução, entrega mensagens de maneira 
 
 \subsection{Soluções atuais}
 
-Para eliminar estes problemas, a sessão de conexão do HTML5 inclui o WebSocket. Segundo \citet[p.~47, Tradução~nossa]{Pimentel2012}, "O protocolo WebSocket fornece um canal de comunicação bidirecional, que opera através de um único soquete na Web e pode ajudar a criar aplicativos escaláveis em tempo real da Web”.
+Para eliminar estes problemas, a sessão de conexão do HTML5 inclui o WebSocket. Segundo \citet[p.~47, Tradução~nossa]{Pimentel2012}, "O protocolo WebSocket fornece um canal de comunicação bidirecional, que opera através de um único soquete e pode ajudar a criar aplicativos escaláveis em tempo real na Web”.
 
 O protocolo consiste de um handshake de abertura seguido pelo enquadramento básico da mensagem, em camadas sobre TCP para permitir uma comunicação bidirecional entre um cliente e servidor. Utiliza o HTTP como uma camada de transporte para se beneficiar da infra estrutura existente, porem não se limita ao HTTP e implementações futuras podem usar um handshake mais simples sem reinventar todo o protocolo \citep{Saint-Andre2011}.
 
-Vale ressaltar que, Websockets se mostra o melhor cenário para uma conexão full-duplex entre cliente e servidor, no entanto, se o serviço apenas transmite informações para seus clientes e não requer qualquer interatividade, usar a API de EventSource fornecida pelo Server-Sent Events (SSE), que faz parte da especificação HTML5, pode ser uma boa opção pois é possível usar o SSE como uma sintaxe comum interoperável para Polling HTTP, Polling longo e Streaming \citep[p.~10-11]{Wang2013}.
+Vale ressaltar que, Websockets se mostra o melhor cenário para uma conexão full-duplex entre cliente e servidor, no entanto, se o serviço apenas transmite informações para seus clientes e não requer qualquer interatividade, usar a API de EventSource fornecida pelo Server-Sent Events (SSE), que faz parte da especificação HTML5, pode ser uma boa opção pois é possível usar o SSE como uma sintaxe comum interoperável para Ajax Polling, Long Polling e Streaming \citep[p.~10-11]{Wang2013}.
