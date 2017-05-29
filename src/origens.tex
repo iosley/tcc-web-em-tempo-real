@@ -1,0 +1,30 @@
+\section{Origens}
+
+Em agosto de 1962, foi previsto um conjunto global interconectado de computadores através do qual todos poderiam acessar dados e programas, descrito em memorandos escritos por J.C.R. Licklider do MIT quando este discutiu sobre o conceito de "Rede Galáctica", conceito este muito semelhante com a internet de hoje \citep[p.~2]{Leiner2009}.
+
+Para a intercomunicação de computadores de diferentes fabricantes se fez necessário uma arquitetura aberta que foi primariamente introduzida por Kahn Shortly da DARP em 1972 com o protocolo NCP (Netware Core Protocol), um protocolo para comunicação bi-direcional identificada por um par de numeros de sockets \citep[p.~4]{Leiner2009}.
+
+Sucedendo e substituindo o protocolo NCP, o protocolo TCP vinha sendo implementado desde 1980 mas foi somente em 1983 que a transição definitiva aconteceu, exigindo que todos os hosts convertessem simultaneamente para que continuassem funcionando \citep[p.~7]{Leiner2009}.
+
+Nesta época, já era possível via Internet, entrar em sessões com máquinas remotas e trocar mensagens, porem, de acordo com \citet{Aghaei2012}, somente em 1989, Tim Berners-Lee sugere a criação de um espaço de hipertexto global na qual qualquer informação acessível seria referida por um único Identificador de Documento Universal (UDI), este espaço seria posteriormente conhecido por Word Wide Web (WWW) ou simplesmente Web.
+
+ Em 1991 Tim Berners-Lee do CERN, na Suíça, apresentou um novo sistema de informação baseado na Internet (WWW) tornando-se possível criar servidores de informação, onde se incluem textos, imagens e multimédia \citep{goethals2000historia}.
+ 
+\subsection{O protocolo HTTP}
+"O protocolo de transferência de hypertext (HTTP) é um protocolo em nível de aplicação para sistemas informacionais de hypermidia, distribuído e colaborativo" \citep[p.~7, Tradução Nossa]{Fielding1999}.
+
+Em uso desde 1990, teve sua primeira versão referida como HTTP / 0.9. Era um protocolo simples para transferência de dados através da internet. A partir da versão 1.0, o protocolo foi melhorado permitindo modificadores sobre a semântica "requisição / resposta" para que duas aplicações determinassem as capacidades verdadeiras de cada uma \citep[p.~7]{Fielding1999}.
+
+No modelo HTTP padrão, um servidor não inicia uma conexão com um cliente, enviando respostas somente quando solicitado. Assim, não é possível que um servidor envie eventos assíncronos para aplicações clientes, forçando o cliente à pesquisar periodicamente por novos conteúdos no servidor, o que consome uma quantidade significativa de trafego de dados e reduz a capacidade de resposta da aplicação, pois o servidor precisa ser requisitado para enviar as atualizações \citep{Loreto2011}.
+
+\subsubsection{A Web 1.0}
+Era uma Web somente leitura, estática e mono-direcional. O principal objetivo era publicar informações para e estabelecer uma presença on-line. Os sites eram estáticos e não interativos. Os Usuários não poderiam fazer contribuições nem interagir com os sites, sendo estes meros panfletos digitais \citep[p.~2-3]{Aghaei2012}.
+
+\subsubsection{A Web 2.0}
+A medida que as os desenvolvedores começaram a criar páginas cada vez mais dinâmicas, foi se fazendo necessário o uso de técnicas para melhorar a comunicação. Em 1999 quando o Internet Explorer 5 implementou o AJAX pela primeira vez \citep{Asleson2006}, as páginas web já podiam ser muito mais flexíveis e rápidas, já não era mais preciso sair da página para buscar informação no servidor, mas ainda não havia uma maneira do servidor enviar mensagens espontaneamente para o cliente.
+
+
+\subsection{Soluções paliativas}
+
+Várias técnicas foram implementadas nos últimos anos para permitir que um servidor web envie atualizações para clientes sem esperar por uma solicitação de pesquisa do cliente. Segundo \citet[p.~3]{Loreto2011}, "Esses mecanismos podem fornecer atualizações aos clientes de forma mais atempada, evitando a latência experimentada pelas aplicações clientes devido à frequente abertura e fechamento de conexões necessárias para periodicamente pesquisar dados”.
+
