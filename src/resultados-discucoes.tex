@@ -15,11 +15,16 @@ Ainda em maio de 1995, Brendan Eich, um funcionário da Netscape\footnote{Empres
 
 Javascript foi concebido para fins muito diferentes do Java, essencialmente para funcionar como uma linguagem de programação integrada em documentos HTML e não como uma linguagem para escrever applets que ocupam uma área retangular fixa na página \citep{goodman2007javascript}. O JavaScript tinha um pequeno vocabulário e um modelo de programação mais facilmente digerível que o Java, com sua abordagem orientada a objetos. Com Javascript é possível programar sem saber muito sobre a linguagem, ou mesmo saber muito sobre programação \citep{crockford2008javascript}.
 
-aqui \cite{ecmascript2016}
-
 A primeira versão, o JavaScript 1.0, estreou no navegador Netscape 2 em 1995. No momento do lançamento do JavaScript 1.0, o Netscape dominava o mercado de navegadores. A Microsoft estava lutando para recuperar seu próprio navegador, Internet Explorer e seguiu rapidamente a liderança da Netscape ao lançar sua própria linguagem VBScript\footnote{Versão interpretada da linguagem Visual Basic para construção dinâmica de página HTML}, juntamente com uma versão do JavaScript chamada JScript, com a entrega do Internet Explorer 3 \citep{keith2010dom}.
 
-A Netscape enviou o idioma para a padronização para a Associação Europeia de Fabricante de Computadores (ECMA) e devido a problemas de marca registrada, a versão padronizada da linguagem estava presa com o nome estranho "ECMAScript". Pelos mesmos motivos de marca registrada, a versão da Microsoft do idioma É formalmente conhecido como "JScript" \citep{flanagan2011javascript}. 
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=350px]{Netscape_Navigator_2.png}
+	\caption{Navegador Netscap 2}
+	\label{Netscape}
+\end{figure}
+
+A Netscape enviou a linguagem para padronização para a Associação Europeia de Fabricante de Computadores (ECMA) e devido a problemas de marca registrada, a versão padronizada da linguagem estava presa com o nome estranho "ECMAScript". Pelos mesmos motivos de marca registrada, a versão da Microsoft do idioma É formalmente conhecido como "JScript" \citep{flanagan2011javascript}. 
 
 O ECMAScript como foi padronizado não se destina a ser computacionalmente auto-suficiente, espera-se que o ambiente computacional de um programa ECMAScript forneça certos objetos específicos do ambiente; um navegador da Web fornece um ambiente de host para computação do lado do cliente, incluindo, por exemplo, objetos que representam janelas, menus, pop-ups\footnote{Janela que abre no navegador da internet quando se acessa uma página na web ou algum link de redirecionamento.}, caixas de diálogo, áreas de texto, âncoras, quadros, histórico, cookies\footnote{Grupo de dados trocados entre o navegador e o servidor de páginas, colocado num arquivo de texto criado no computador do utilizador.} e entrada / saída; um servidor web fornece um ambiente de host diferente para a computação do lado do servidor, incluindo objetos que representam requisições \citep{ecmascript2016}.
 
