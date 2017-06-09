@@ -24,6 +24,13 @@ Em uso desde 1990, teve sua primeira versão referida como HTTP / 0.9. Era um pr
 
 No modelo HTTP padrão, um servidor não inicia uma conexão com um cliente, enviando respostas somente quando solicitado. Assim, não é possível que um servidor envie eventos assíncronos para aplicações clientes, forçando o cliente à pesquisar periodicamente por novos conteúdos no servidor, o que consome uma quantidade significativa de trafego de dados e reduz a capacidade de resposta da aplicação, pois o servidor precisa ser requisitado para enviar as atualizações \cite{Loreto2011}.
 
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=350px]{http.png}
+	\caption{Modelo de requisição HTTP}
+	\label{HTTP}
+\end{figure}
+
 \subsection{A Evolução da WEB}
 Era uma Web somente leitura, estática e mono-direcional. O principal objetivo era publicar informações para e estabelecer uma presença on-line. Os sites\footnote{Local na Internet identificado por um nome de domínio, constituído por uma ou mais páginas de hipertexto.} eram estáticos e não interativos. Os Usuários não poderiam fazer contribuições nem interagir com os sites, sendo estes meros panfletos digitais \cite[p.~2-3]{Aghaei2012}.
 
