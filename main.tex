@@ -1,37 +1,57 @@
 \documentclass[
+	article,
     a4paper,
-    12pt
-]{article}
+    12pt,
+    oneside,
+    english,			% idioma adicional para hifenização
+    brazil,
+    sumario=tradicional
+]{abntex2}
+
 
 % Packages
-\usepackage{natbib}
-%\usepackage{abntex2cite}
-\usepackage[utf8]{inputenc}
-\usepackage[english, brazilian]{babel}
-\usepackage[T1]{fontenc}
-\usepackage{graphicx}
-\graphicspath{{src/assets/}}
-\usepackage{fancyhdr}
-\usepackage{lastpage}
-\usepackage{scrextend}
-\usepackage[
-    top = 3cm,
-    bottom = 2cm,
-    left = 3cm,
-    right = 2cm
-]{geometry}
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{nomencl} 			% Lista de simbolos
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+\graphicspath{{src/assets/}}  % Local das imagens
+\usepackage{microtype} 			% para melhorias de justificação
+
+% Pacotes de citações
+%\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+
 % End Packages
 
+% Configurando margens
+\setlrmarginsandblock{3cm}{2cm}{*} % margem esquerda e direita
+\setulmarginsandblock{3cm}{2cm}{*} % margem superior e inferior
+\checkandfixthelayout
+
 % Meta
-\title{
-    Web em Tempo Real \\
-    \begin{large} %Subtitle
-      Soluções para comunicação em tempo real entre clientes e servidores
-    \end{large}
-}
+\title{WEB EM TEMPO REAL \\Soluções para comunicação em tempo real entre clientes e servidores.}
 \author{Iosley Carlos Silva}
 \date{\today}
 % End Meta
+
+% Informações do PDF
+\makeatletter
+\hypersetup{
+	%pagebackref=true,
+	pdftitle={\@title}, 
+	pdfauthor={\@author},
+	pdfsubject={\@title},
+	pdfcreator={LaTeX with abnTeX2},
+	pdfkeywords={atigo científico}, 
+	colorlinks=true,       		% false: boxed links; true: colored links
+	linkcolor=blue, 			% color of internal links
+	citecolor=blue, 			% color of links to bibliography
+	filecolor=magenta, 		 % color of file links
+	urlcolor=blue,
+	bookmarksdepth=4
+}
 
 \begin{document}
 	
@@ -51,8 +71,15 @@
 \input{./src/conclusao}
 
 { \clearpage
-	\bibliographystyle{apalike}
 	\bibliography{./src/referencias}
+}
+
+%{ \clearpage
+	%\listoftables
+%}
+
+{ \clearpage
+	\listoffigures
 }
 
 \end{document}
