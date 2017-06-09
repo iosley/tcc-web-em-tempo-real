@@ -10,6 +10,8 @@ Ainda segundo \citeonline{Asleson2006}, em maio de 1995 John Gage e Andreessen a
 
 Applets\footnote{Pequeno software que executa uma atividade específica dentro de outro programa maior.} permitem que pequenas aplicações Java possam ser incluídas nas páginas web e executadas através da \emph{Java Virtual Machine} (JVM). Applets são executadas no modelo de segurança de "caixa de areia" (\emph{sandbox}), não podem carregar bibliotecas nativas e são tipicamente impedidas de ler ou gravar no disco \cite{Asleson2006}.
 
+% flash aqui
+
 Ainda em maio de 1995, Brendan Eich, um funcionário da Netscape\footnote{Empresa de serviços de computadores nos EUA.} na época, desenvolveu uma linguagem de script em dez dias que se tornou conhecida como Mocha. Este nome original foi dado pelo fundador da Netscape. Pouco depois, o nome foi avaliado e renomeado como Livescript. Mais tarde naquele ano em dezembro, a Netscape recebeu uma licença de marca registrada da Sun\footnote{Fabricante de computadores, semicondutores e software com sede em Santa Clara, Califórnia, no Silicon Valley.}. Desta vez, o nome mudou para Javascript \cite{neer2013history}.
 
 Javascript foi concebido para fins muito diferentes do Java, essencialmente para funcionar como uma linguagem de programação integrada em documentos HTML e não como uma linguagem para escrever applets que ocupam uma área retangular fixa na página \cite{goodman2007javascript}. O Javascript tinha um pequeno vocabulário e um modelo de programação mais facilmente digerível que o Java, com sua abordagem orientada a objetos. Nesse contexto \citeonline{crockford2008javascript} afirma que com Javascript é possível programar sem saber muito sobre a linguagem, ou mesmo saber muito sobre programação.
@@ -27,8 +29,6 @@ A Netscape enviou a linguagem para padronização para a Associação Europeia d
 
 O ECMAScript como foi padronizado não se destina a ser computacionalmente auto-suficiente, espera-se que o ambiente computacional de um programa ECMAScript forneça certos objetos específicos do ambiente; um navegador da Web fornece um ambiente de \emph{host} para computação do lado do cliente, incluindo, por exemplo, objetos que representam janelas, menus, pop-ups\footnote{Janela que abre no navegador da internet quando se acessa uma página na web ou algum link de redirecionamento.}, caixas de diálogo, áreas de texto, âncoras, quadros, histórico, cookies\footnote{Grupo de dados trocados entre o navegador e o servidor de páginas, colocado num arquivo de texto criado no computador do utilizador.} e entrada / saída; um servidor web fornece um ambiente de \emph{host} diferente para a computação do lado do servidor, incluindo objetos que representam requisições \cite{ecmascript2016}.
 
-------------------------------------------------------------------------------------
-%pré ajax, iframes
 \subsection{Pré Ajax}
 
 Em 1995, já era possível construir \emph{Single Page Applications} (SPAs) via frames/framesets\footnote{Divisões internas dentro de uma mesma janela do navegador, onde são carregados outros documentos HTML.} e url="javascript:...". Requisições assíncronas também eram possíveis utilizando Javascript e manipulando elementos HTML que realizavam requisições HTTP; praticamente qualquer tag que possa ser configurado para fazer referência a um URL pode ser empregado para tarefas de comunicação com base em Javascript \cite{powell2008ajax}.
@@ -38,15 +38,22 @@ Ainda segundo \citeonline{powell2008ajax}, utilizando-se de tags que referenciam
 Quanto ao uso da tag \emph{<im>} para comunicação bi-direcional \citeonline{powell2008ajax} completa:
 
 \begin{citacao}
-	Parece que o uso de uma imagem provavelmente não é a melhor maneira de transmitir informações bidirecionais. Considere que, se você pedir uma imagem, você estará recebendo uma imagem, provavelmente em formato GIF, JPEG ou PNG para exibição. Como exemplo, você pode solicitar ao usuário alguns dados e, em seguida, gerar uma imagem personalizada para eles. A transmissão dos dados fornecidos pelo usuário é através da seqüência de consulta como anteriormente, mas desta vez o servidor responderá não com um código 204, mas com uma imagem real para usar. Você pode usar o DOM e inseri-lo na página.
+	Parece que o uso de uma imagem provavelmente não é a melhor maneira de transmitir informações bidirecionais. Considere que, se você pedir uma imagem, você estará recebendo uma imagem, provavelmente em formato GIF, JPEG ou PNG para exibição. Como exemplo, você pode solicitar ao usuário alguns dados e, em seguida, gerar uma imagem personalizada para eles. A transmissão dos dados fornecidos pelo usuário é através da sequência de consulta como anteriormente, mas desta vez o servidor responderá não com um código 204, mas com uma imagem real para usar. Você pode usar o DOM e inseri-lo na página.
 \end{citacao}
 
-Visto que um navegador permanecerá na mesma página quando receber uma resposta 204, ele pode ser usado para fingir ir a uma URL apenas para enviar alguns dados; isto é feito em Javascript com uma atribuição direta para \emph{window.location} enviando os dados pela url, através das \emph{Query Strings}. Porem as \emph{Query Strings} são limitadas ao tamanho máximo da URL permitido pelo navegador. Para envio de uma grande quantidade de dados o desenvolvedor precisa realizar uma requisição HTTP POST em uma técnica de iframes\footnote{Elemento HTML que permite carregar as informações de um documento HTML separado em um documento HTML existente.} escondidos. Está técnica consiste da criação de campos de formulário a serem enviados com o formulário inserido no iframe. Uma vez que o formulário é preenchido com os dados desejados, é desencadeado o envio do formulário via Javascript \cite{powell2008ajax}.
+Visto que um navegador permanecerá na mesma página quando receber uma resposta HTTP de status 204, ele pode ser usado para fingir ir a uma URL apenas para enviar alguns dados; isto é feito em Javascript com uma atribuição direta para \emph{window.location} enviando os dados pela URL, através das \emph{Query Strings}. Porem as \emph{Query Strings} são limitadas ao tamanho máximo da URL permitido pelo navegador.
 
+Para envio de uma grande quantidade de dados o desenvolvedor precisaria realizar uma requisição HTTP POST com uma técnica de iframes\footnote{Elemento HTML que permite carregar as informações de um documento HTML separado em um documento HTML existente.} escondidos. Está técnica consiste da criação de campos de formulário a serem enviados com o formulário inserido no iframe. Uma vez que o formulário é preenchido com os dados desejados, é desencadeado o envio do formulário via Javascript.
+
+A utilização de iframe é flexível no que pode receber em comparação com alguns dos outros métodos, permitindo a comunicação bi-direcional através de respostas em XHTML\footnote{Linguagem Extensível para Marcação de Hipertexto.}, XML\footnote{Linguagem de marcação para a criação de documentos com dados organizados hierarquicamente.}, JSON\footnote{Notação de Objetos JavaScript, é uma formatação leve de troca de dados.} ou outro formato de codificação à serem tratado com Javascript no navegador \cite{powell2008ajax}.
 
 \subsection{Ajax}
 
-O termo Ajax é um acrônimo para \emph{Javascript assíncrono e XML} \cite{Garrett2005} e descreve uma maneira de realizar uma comunicação HTTP a partir de uma aplicação Javascript em páginas web.
+O termo Ajax é um acrônimo para Javascript assíncrono e XML que segundo \citeonline{Garrett2005}, descreve uma maneira de realizar uma comunicação HTTP a partir de uma aplicação Javascript em páginas web.
+
+Ajax é uma mistura do antigo com o novo, porque as tecnologias já existentes são combinadas em técnicas que muito cou
+O Javascript assíncrono e o XML (Ajax) 1 são algo antigo e algo novo, porque as tecnologias já existentes são usadas, mas novas porque combina essas tecnologias existentes em técnicas que muito poucas consideravam anteriormente. Simplificando, por causa do Ajax, uma nova geração de aplicações e idéias estão borbulhando na cena do desenvolvedor.
+Uma definição muito breve do Ajax é a seguinte:
 
 % long polling
 
