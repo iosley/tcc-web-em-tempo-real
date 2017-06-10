@@ -4,11 +4,11 @@
 
 Nos primeiros dias da \emph{World Wide Web}, um navegador precisava apresentar apenas alguns tipos de dados aos usuários. Para não ser limitado por esses tipos de dados, os desenvolvedores trabalharam duro para estender os navegadores para que dados em outros formatos pudessem ser renderizados no computador cliente. Uma maneira de resolver o problema era permitir que o navegador, ao reconhecer um arquivo recebido de um tipo específico, iniciar um aplicativo separado na máquina cliente para renderizar o conteúdo. Desde que este aplicativo auxiliar tenha sido instalado no computador cliente, o navegador iniciará o programa e enviará o arquivo recebido para esse programa \cite{zammetti2007brief}.
 
-A primeira solução para tornar a web mais dinâmica foi o \emph{"Common Gateway Interface"} (CGI), que permite a criação de programas que executem quando um usuário faz uma requisição. Porem, CGI não é a solução mais segura para criação de páginas web pois permite que seja executado um programa em seu sistema operacional e usuários maliciosos podem explorar isto com algum exploit\footnote{Uma sequência de comandos que tomam vantagem de um defeito, falha ou vulnerabilidade a fim de causar um comportamento acidental ou imprevisto.} e executar operações indesejadas \cite{Asleson2006}.
+A primeira solução para tornar a web mais dinâmica foi o \emph{“Common Gateway Interface”} (CGI), que permite a criação de programas que executem quando um usuário faz uma requisição. Porem, CGI não é a solução mais segura para criação de páginas web pois permite que seja executado um programa em seu sistema operacional e usuários maliciosos podem explorar isto com algum exploit\footnote{Uma sequência de comandos que tomam vantagem de um defeito, falha ou vulnerabilidade a fim de causar um comportamento acidental ou imprevisto.} e executar operações indesejadas \cite{Asleson2006}.
 
 Ainda segundo \citeonline{Asleson2006}, em maio de 1995 John Gage e Andreessen anunciam o nascimento da linguagem de programação Java. O navegador Netscape era dominante na época e ofereceria suporte para esta nova linguagem. Dentro de alguns meses, milhares de pessoas já haviam baixado o Java em seus computadores, abrindo novos caminhos para páginas web dinâmicas.
 
-Applets\footnote{Pequeno software que executa uma atividade específica dentro de outro programa maior.} permitem que pequenas aplicações Java possam ser incluídas nas páginas web e executadas através da \emph{Java Virtual Machine} (JVM). Applets são executadas no modelo de segurança de "caixa de areia" (\emph{sandbox}), não podem carregar bibliotecas nativas e são tipicamente impedidas de ler ou gravar no disco \cite{Asleson2006}.
+Applets\footnote{Pequeno software que executa uma atividade específica dentro de outro programa maior.} permitem que pequenas aplicações Java possam ser incluídas nas páginas web e executadas através da \emph{Java Virtual Machine} (JVM). Applets são executadas no modelo de segurança de “caixa de areia” (\emph{sandbox}), não podem carregar bibliotecas nativas e são tipicamente impedidas de ler ou gravar no disco \cite{Asleson2006}.
 
 % flash aqui
 
@@ -25,7 +25,7 @@ A primeira versão, o Javascript 1.0, estreou no navegador Netscape 2 em 1995. N
 	\label{fig:netscape}
 \end{figure}
 
-A Netscape enviou a linguagem para padronização para a Associação Europeia de Fabricante de Computadores (ECMA) e devido a problemas de marca registrada, a versão padronizada da linguagem estava presa com o nome estranho "ECMAScript". Pelos mesmos motivos de marca registrada, a versão da Microsoft do idioma É formalmente conhecido como "JScript" \cite{flanagan2011javascript}.
+A Netscape enviou a linguagem para padronização para a Associação Europeia de Fabricante de Computadores (ECMA) e devido a problemas de marca registrada, a versão padronizada da linguagem estava presa com o nome estranho “ECMAScript”. Pelos mesmos motivos de marca registrada, a versão da Microsoft do idioma É formalmente conhecido como “JScript” \cite{flanagan2011javascript}.
 
 O ECMAScript como foi padronizado não se destina a ser computacionalmente auto-suficiente, espera-se que o ambiente computacional de um programa ECMAScript forneça certos objetos específicos do ambiente; um navegador da Web fornece um ambiente de \emph{host} para computação do lado do cliente, incluindo, por exemplo, objetos que representam janelas, menus, pop-ups\footnote{Janela que abre no navegador da internet quando se acessa uma página na web ou algum link de redirecionamento.}, caixas de diálogo, áreas de texto, âncoras, quadros, histórico, cookies\footnote{Grupo de dados trocados entre o navegador e o servidor de páginas, colocado num arquivo de texto criado no computador do utilizador.} e entrada / saída; um servidor web fornece um ambiente de \emph{host} diferente para a computação do lado do servidor, incluindo objetos que representam requisições \cite{ecmascript2016}.
 
@@ -35,7 +35,7 @@ Em 1995, já era possível construir \emph{Single Page Applications} (SPAs) via 
 
 Ainda segundo \citeonline{powell2008ajax}, utilizando-se de tags que referenciam URL é possível gerar uma requisição de via única ao servidor para indicar que algum evento aconteceu através de campos adicionados ao URL (\emph{Query Strings}). Para isso, utiliza-se de parâmetros passados via URL por uma tag\footnote{Estruturas de linguagem de marcação contendo instruções, tendo uma marca de início e outra de fim para que o navegador possa renderizar uma página.} \emph{<img>} por exemplo, cabe ao servidor tratar a requisição e retornar o dado esperado ou uma resposta vazia com status 204, informando ao cliente que a solicitação ocorreu sem erros mas que não há conteúdo na resposta.
 
-Quanto ao uso da tag \emph{<im>} para comunicação bi-direcional \citeonline{powell2008ajax} completa:
+Quanto ao uso da tag \emph{<img>} para comunicação bi-direcional \citeonline{powell2008ajax} completa:
 
 \begin{citacao}
 	Parece que o uso de uma imagem provavelmente não é a melhor maneira de transmitir informações bidirecionais. Considere que, se você pedir uma imagem, você estará recebendo uma imagem, provavelmente em formato GIF, JPEG ou PNG para exibição. Como exemplo, você pode solicitar ao usuário alguns dados e, em seguida, gerar uma imagem personalizada para eles. A transmissão dos dados fornecidos pelo usuário é através da sequência de consulta como anteriormente, mas desta vez o servidor responderá não com um código 204, mas com uma imagem real para usar. Você pode usar o DOM e inseri-lo na página.
@@ -55,7 +55,7 @@ Ajax é uma mistura do antigo com o novo, porque as tecnologias já existentes s
 
 Nesse contexto, \citeonline{Asleson2006} afirmam:
 \begin{citacao}
-	Honestamente, o Ajax não é nada novo. Na verdade, a tecnologia "mais nova" relacionada ao termo - o objeto XMLHttpRequest (XHR) - tem ocorrido desde o Internet Explorer 5 (lançado na primavera de 1999) como um controle ActiveX\footnote{Framework criado pela Microsoft que adapta as antigas versões das plataformas COM - Component Object Model e OLE - Object Linking and Embedding para conteúdo disponível online, especialmente aplicações web e cliente/servidor.}. No entanto, o que é novo é o nível de suporte do navegador. Originalmente, o objeto XHR era suportado apenas no Internet Explorer (limitando assim seu uso), mas, com o Mozilla 1.0 e Safari 1.2, o suporte é generalizado.
+	Honestamente, o Ajax não é nada novo. Na verdade, a tecnologia “mais nova” relacionada ao termo - o objeto XMLHttpRequest (XHR) - tem ocorrido desde o Internet Explorer 5 (lançado na primavera de 1999) como um controle ActiveX\footnote{Framework criado pela Microsoft que adapta as antigas versões das plataformas COM - Component Object Model e OLE - Object Linking and Embedding para conteúdo disponível online, especialmente aplicações web e cliente/servidor.}. No entanto, o que é novo é o nível de suporte do navegador. Originalmente, o objeto XHR era suportado apenas no Internet Explorer (limitando assim seu uso), mas, com o Mozilla 1.0 e Safari 1.2, o suporte é generalizado.
 \end{citacao}
 
 Criado pela Microsoft no fim da decada de 90, XMLHttpRequest é a interface através da qual o navegador pode fazer requisições HTTP com Javascript. Quando a interface XMLHttpRequest foi adicionada ao Internet Explorer, ele permitiu que os desenvolvedores fizessem coisas com o Javascript que antes era muito difícil \cite{haverbeke2014eloquent}.
@@ -84,10 +84,10 @@ De fato, o envio de dados assíncronos ao servidor e a recepção de dados adici
 \end{figure}
 
 \begin{citacao}
-	As versões iniciais do XHR proporcionaram recursos limitados: transferências de dados baseadas em texto, suporte restrito para o processamento de uploads e incapacidade de lidar com solicitações entre domínios\footnote{Nome que serve para localizar e identificar conjuntos de computadores na internet}. Para resolver essas falhas, o rascunho "XMLHttpRequest Level 2" foi publicado em 2008, que adicionou uma série de novos recursos \cite[P.~262-263]{grigorik2013high}.
+	As versões iniciais do XHR proporcionaram recursos limitados: transferências de dados baseadas em texto, suporte restrito para o processamento de uploads e incapacidade de lidar com solicitações entre domínios\footnote{Nome que serve para localizar e identificar conjuntos de computadores na internet}. Para resolver essas falhas, o rascunho “XMLHttpRequest Level 2” foi publicado em 2008, que adicionou uma série de novos recursos \cite[P.~262-263]{grigorik2013high}.
 \end{citacao}
 
-Todos os novos recursos e recursos XHR2 são oferecidos através da mesma API XMLHttpRequest. Hoje, há apenas uma especificação XHR unificada, pois em 2011 a especificação "XMLHttpRequest Level 2" foi mesclada com a especificação original \cite{grigorik2013high}.
+Todos os novos recursos e recursos XHR2 são oferecidos através da mesma API XMLHttpRequest. Hoje, há apenas uma especificação XHR unificada, pois em 2011 a especificação “XMLHttpRequest Level 2” foi mesclada com a especificação original \cite{grigorik2013high}.
 
 Uma lista de compatibilidade com os principais navegadores do mercado, pode ser conferida na Figura \ref{fig:xhr2}.
 
