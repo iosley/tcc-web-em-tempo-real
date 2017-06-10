@@ -87,7 +87,7 @@ De fato, o envio de dados assíncronos ao servidor e a recepção de dados adici
 	As versões iniciais do XHR proporcionaram recursos limitados: transferências de dados baseadas em texto, suporte restrito para o processamento de uploads e incapacidade de lidar com solicitações entre domínios\footnote{Nome que serve para localizar e identificar conjuntos de computadores na internet}. Para resolver essas falhas, o rascunho "XMLHttpRequest Level 2" foi publicado em 2008, que adicionou uma série de novos recursos \cite[P.~262-263]{grigorik2013high}.
 \end{citacao}
 
-Todos os novos recursos e recursos XHR2 são oferecidos através da mesma API XMLHttpRequest. Hoje, há apenas uma especificação XHR unificada, pois em 2011, a especificação "XMLHttpRequest Level 2" foi mesclada com a especificação original \cite{grigorik2013high}.
+Todos os novos recursos e recursos XHR2 são oferecidos através da mesma API XMLHttpRequest. Hoje, há apenas uma especificação XHR unificada, pois em 2011 a especificação "XMLHttpRequest Level 2" foi mesclada com a especificação original \cite{grigorik2013high}.
 
 Uma lista de compatibilidade com os principais navegadores do mercado, pode ser conferida na Figura \ref{fig:xhr2}.
 
@@ -117,19 +117,34 @@ Ainda segundo \citeonline{gross2006introduction}, o principal problema desta abo
 
 Nesta técnica, a conexão entre o cliente e servidor fica ociosa até expirar ou até que o servidor tenha dados para enviar. Cabe ao cliente a responsabilidade pela reconexão para aguardar a próxima atualização. Esta técnica é mais eficiente que Ajax Polling, quando os dados são enviados com pouca frequência \cite{gutwin2011real}.
 
---------------------------------------------------------
-PAREI AQUI.
+\subsection{XHR Streaming}
 
-AQUI VOU POR SOBRE AJAX POLLING E MÉTODOS PALIATIVOS UTILIZANDO AJAX
-
-% stream e http chunk data stream
-
---------------------------------------------------------
-DAQUI PRA CIMA É A PARTE DO CONTEXTO HISTÓRICO.
-
-DAQUI PRA BAIXO É A PARTE DO "ESTADO DA ARTE"
+% TODO: ENCONTRAR ESSE KRA PRA POR AQUI
 
 \subsection{Server-Sent Event (SSE)}
 
+Proposto desde 2009, define uma API para abrir uma conexão HTTP para receber notificações push\footnote{Sistema de distribuição de conteúdo da Internet em que a informação sai de um servidor para um cliente, com base em uma série de parâmetros estabelecidos pelo cliente.} de um servidor na forma de eventos DOM, permitindo que os servidores enviem dados para páginas da Web por meio de HTTP ou usando protocolos dedicados de envio \cite{hicksonserver2015}.
+
+Normatizado pelo W3C em fevereiro de 2015, apresenta a interface \emph{EventSource}; é projetada de modo que possa ser estendida para funcionar com outros esquemas de notificação push, como Push SMS\footnote{Serviço utilizado para o envio de mensagens de texto curtos, através de telefones celulares.} \cite{hicksonserver2015}.
+
+\begin{citacao}
+	Sob o capô, SSE oferece uma implementação eficiente e cruzada do \emph{XHR Streaming}; A entrega real das mensagens é feita através de uma única conexão HTTP de longa duração. No entanto, ao contrário de lidar com transmissão de XHR por conta própria, o navegador lida com todo o gerenciamento de conexão e análise de mensagens, permitindo que nossos aplicativos se concentrem na lógica de negócios! Em suma, a SSE torna o trabalho com dados em tempo real simples e eficiente \cite[P.~279]{grigorik2013high}.
+\end{citacao}
+
+Suportado nativamente pela maioria dos navegadores modernos (Figura \ref{fig:sse}); foi uma adição antecipada à especificação HTML5. As duas omissões notáveis, desde o início de 2013, são o Internet Explorer eo navegador Android de ações.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=400px]{Can_I_Use-SSE.png}
+	\caption{Navegadores compatíveis com Server-Sent Event}
+	\label{fig:sse}
+\end{figure}
+
+% TODO: Completar o texto
+------------------------------------------------------------------------------------
+------------------------------- PAREI AQUI ----------------------------------------
+------------------------------------------------------------------------------------
+
 \subsection{Web Sockets}
 
+% TODO: Esse kra vai ficar por ultimo
