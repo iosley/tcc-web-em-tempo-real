@@ -100,6 +100,8 @@ Uma lista de compatibilidade com os principais navegadores do mercado, pode ser 
 
 \subsection{HTTP Polling}
 
+Segundo \citeonline[P.~273]{grigorik2013high}," o HTTP não fornece nenhuma maneira para o servidor iniciar uma nova conexão com o cliente". Para isso, o cliente deve pesquisar por atualizações no servidor.
+
 Para uma atualização constante de informações entre o cliente e servidor, XHR nos fornece uma maneira simples. O cliente faz uma solicitação regular ao servidor solicitando atualizações e o servidor responde, podendo a resposta não conter dado. Esta técnica é conhecida por "Polling HTTP" ou "Ajax Polling". Tende a ser um desperdício de recursos de rede e de servidor, porem é fácil de implementar \cite{mccarthy2009comet}.
 
 No entanto, de acordo com \citeonline{Pimentel2012}, Polling HTTP é considerada uma boa solução para a entrega de informações em tempo real se o intervalo de entrega da mensagem for conhecido e  a taxa de transmissão de dados for constante. Porem, a consulta HTTP repete informações de cabeçalho significativas, aumentando assim a latência.
@@ -123,15 +125,15 @@ Nesta técnica, a conexão entre o cliente e servidor fica ociosa até expirar o
 
 \subsection{Server-Sent Event (SSE)}
 
-Proposto desde 2009, define uma API para abrir uma conexão HTTP para receber notificações push\footnote{Sistema de distribuição de conteúdo da Internet em que a informação sai de um servidor para um cliente, com base em uma série de parâmetros estabelecidos pelo cliente.} de um servidor na forma de eventos DOM, permitindo que os servidores enviem dados para páginas da Web por meio de HTTP ou usando protocolos dedicados de envio \cite{hicksonserver2015}.
+Proposto desde 2009, define uma API para abrir uma conexão HTTP para receber notificações \emph{push}\footnote{Sistema de distribuição de conteúdo da Internet em que a informação sai de um servidor para um cliente, com base em uma série de parâmetros estabelecidos pelo cliente.} de um servidor na forma de eventos DOM, permitindo que os servidores enviem dados para páginas da Web por meio de HTTP ou usando protocolos dedicados de envio \cite{hicksonserver2015}.
 
-Normatizado pelo W3C em fevereiro de 2015, apresenta a interface \emph{EventSource}; é projetada de modo que possa ser estendida para funcionar com outros esquemas de notificação push, como Push SMS\footnote{Serviço utilizado para o envio de mensagens de texto curtos, através de telefones celulares.} \cite{hicksonserver2015}.
+Normatizado pelo W3C em fevereiro de 2015, apresenta a interface \emph{EventSource}; é projetada de modo que possa ser estendida para funcionar com outros esquemas de notificação \emph{push}, como \emph{Push SMS}\footnote{Serviço utilizado para o envio de mensagens de texto curtos, através de telefones celulares.} \cite{hicksonserver2015}.
 
 \begin{citacao}
 	Sob o capô, SSE oferece uma implementação eficiente e cruzada do \emph{XHR Streaming}; A entrega real das mensagens é feita através de uma única conexão HTTP de longa duração. No entanto, ao contrário de lidar com transmissão de XHR por conta própria, o navegador lida com todo o gerenciamento de conexão e análise de mensagens, permitindo que nossos aplicativos se concentrem na lógica de negócios! Em suma, a SSE torna o trabalho com dados em tempo real simples e eficiente \cite[P.~279]{grigorik2013high}.
 \end{citacao}
 
-Suportado nativamente pela maioria dos navegadores modernos (Figura \ref{fig:sse}); foi uma adição antecipada à especificação HTML5. As duas omissões notáveis, desde o início de 2013, são o Internet Explorer eo navegador Android de ações.
+Suportado nativamente pela maioria dos navegadores modernos (Figura \ref{fig:sse}); foi uma adição antecipada à especificação HTML5. No entanto, a interface \emph{EventSource} é simples, de modo que pode ser emulada através de uma biblioteca de Javascript opcional (\emph{Polyfill}\footnote{Biblioteca Javascript que implementa o padrão HTML5, quer seja um padrão estabelecido para todos os navegadores ou não.}) para navegadores que não o suportam nativamente \cite{grigorik2013high}.
 
 \begin{figure}[!htb]
 	\centering
