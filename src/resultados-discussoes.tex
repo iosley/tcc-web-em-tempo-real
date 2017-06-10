@@ -89,7 +89,7 @@ De fato, o envio de dados assíncronos ao servidor e a recepção de dados adici
 
 Todos os novos recursos e recursos XHR2 são oferecidos através da mesma API XMLHttpRequest. Hoje, há apenas uma especificação XHR unificada, pois em 2011, a especificação "XMLHttpRequest Level 2" foi mesclada com a especificação original \cite{grigorik2013high}.
 
-Uma lista de compatibilidade com os principais navegadores do mercado, pode ser conferida na figura \ref{fig:xhr2}.
+Uma lista de compatibilidade com os principais navegadores do mercado, pode ser conferida na Figura \ref{fig:xhr2}.
 
 \begin{figure}[!htb]
 	\centering
@@ -104,15 +104,18 @@ Para uma atualização constante de informações entre o cliente e servidor, XH
 
 No entanto, de acordo com \citeonline{Pimentel2012}, Polling HTTP é considerada uma boa solução para a entrega de informações em tempo real se o intervalo de entrega da mensagem for conhecido e  a taxa de transmissão de dados for constante. Porem, a consulta HTTP repete informações de cabeçalho significativas, aumentando assim a latência.
 
-Para reduzir a latência sem aumentar a carga do servidor, a solução é criar dois fluxos de comunicação entre o cliente e o servidor em uma técnica conhecida por \emph{Long Polling HTTP}. O primeiro fluxo é usado para receber mensagens e o segundo fluxo é usado para enviar mensagens. Para receber mensagens, o cliente pesquisa o servidor com um pedido de mensagens; se não houver mensagens, o servidor não responde com uma resposta imediatamente. O servidor coloca o pedido de pesquisa em espera por um período de tempo específico ou até que uma mensagem seja gerada pelo servidor. A latência é significante ao converter o tempo inoperante em uma espera criada pelo servidor enquanto o cliente aguarda o potencial de uma mensagem que está sendo gerada \cite{gross2006introduction}.
+Para reduzir a latência sem aumentar a carga do servidor, a solução é criar dois fluxos de comunicação entre o cliente e o servidor em uma técnica conhecida por \emph{Long Polling HTTP}. O primeiro fluxo é usado para receber mensagens e o segundo fluxo é usado para enviar mensagens. Para receber mensagens, o cliente pesquisa o servidor com um pedido de mensagens; se não houver mensagens, o servidor não responde com uma resposta imediatamente. O servidor coloca o pedido de pesquisa em espera por um período de tempo específico ou até que uma mensagem seja gerada pelo servidor  (Figura \ref{fig:longPolling}). A redução da latência é significativa, ao converter o tempo inoperante em uma espera criada pelo servidor, enquanto o cliente aguarda o potencial de uma mensagem que está sendo gerada \cite{gross2006introduction}.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=400px]{Long-Polling.png}
+	\caption{Long Polling HTTP}
+	\label{fig:longPolling}
+\end{figure}
 
 Ainda segundo \citeonline{gross2006introduction}, o principal problema desta abordagem é que milhares de threads\footnote{Pequeno programa que trabalha como um subsistema, sendo uma forma de um processo se auto dividir em duas ou mais tarefas.} podem estar aguardando mensagens que possam ou não ser geradas, consumindo uma grande quantidade de Memória RAM\footnote{Tecnologia que permite o acesso aos arquivos armazenados no computador, responsável pela leitura dos conteúdos quando requeridos.}.
 
 Nesta técnica, a conexão entre o cliente e servidor fica ociosa até expirar ou até que o servidor tenha dados para enviar. Cabe ao cliente a responsabilidade pela reconexão para aguardar a próxima atualização. Esta técnica é mais eficiente que Ajax Polling, quando os dados são enviados com pouca frequência \cite{gutwin2011real}.
-
-
-
-
 
 --------------------------------------------------------
 PAREI AQUI.
