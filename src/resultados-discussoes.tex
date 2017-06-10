@@ -108,6 +108,11 @@ Para reduzir a latência sem aumentar a carga do servidor, a solução é criar 
 
 Ainda segundo \citeonline{gross2006introduction}, o principal problema desta abordagem é que milhares de threads\footnote{Pequeno programa que trabalha como um subsistema, sendo uma forma de um processo se auto dividir em duas ou mais tarefas.} podem estar aguardando mensagens que possam ou não ser geradas, consumindo uma grande quantidade de Memória RAM\footnote{Tecnologia que permite o acesso aos arquivos armazenados no computador, responsável pela leitura dos conteúdos quando requeridos.}.
 
+Nesta técnica, a conexão entre o cliente e servidor fica ociosa até expirar ou até que o servidor tenha dados para enviar. Cabe ao cliente a responsabilidade pela reconexão para aguardar a próxima atualização. Esta técnica é mais eficiente que Ajax Polling, quando os dados são enviados com pouca frequência \cite{gutwin2011real}.
+
+
+
+
 
 --------------------------------------------------------
 PAREI AQUI.
