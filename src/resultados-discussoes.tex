@@ -55,7 +55,7 @@ Ajax é uma mistura do antigo com o novo, porque as tecnologias já existentes s
 
 Nesse contexto, \citeonline{Asleson2006} afirmam:
 \begin{citacao}
-	Honestamente, o Ajax não é nada novo. Na verdade, a tecnologia "mais nova" relacionada ao termo - o objeto XMLHttpRequest (XHR) - tem ocorrido desde o Internet Explorer 5 (lançado na primavera de 1999) como um controle Active X\footnote{Framework criado pela Microsoft que adapta as antigas versões das plataformas COM - Component Object Model e OLE - Object Linking and Embedding para conteúdo disponível online, especialmente aplicações web e cliente/servidor.}. No entanto, o que é novo é o nível de suporte do navegador. Originalmente, o objeto XHR era suportado apenas no Internet Explorer (limitando assim seu uso), mas, com o Mozilla 1.0 e Safari 1.2, o suporte é generalizado.
+	Honestamente, o Ajax não é nada novo. Na verdade, a tecnologia "mais nova" relacionada ao termo - o objeto XMLHttpRequest (XHR) - tem ocorrido desde o Internet Explorer 5 (lançado na primavera de 1999) como um controle ActiveX\footnote{Framework criado pela Microsoft que adapta as antigas versões das plataformas COM - Component Object Model e OLE - Object Linking and Embedding para conteúdo disponível online, especialmente aplicações web e cliente/servidor.}. No entanto, o que é novo é o nível de suporte do navegador. Originalmente, o objeto XHR era suportado apenas no Internet Explorer (limitando assim seu uso), mas, com o Mozilla 1.0 e Safari 1.2, o suporte é generalizado.
 \end{citacao}
 
 Criado pela Microsoft no fim da decada de 90, XMLHttpRequest é a interface através da qual o navegador pode fazer requisições HTTP com Javascript. Quando a interface XMLHttpRequest foi adicionada ao Internet Explorer, ele permitiu que os desenvolvedores fizessem coisas com o Javascript que antes era muito difícil \cite{haverbeke2014eloquent}.
@@ -100,11 +100,11 @@ Uma lista de compatibilidade com os principais navegadores do mercado, pode ser 
 
 \subsection{HTTP Polling}
 
-Segundo \citeonline[P.~273]{grigorik2013high}," o HTTP não fornece nenhuma maneira para o servidor iniciar uma nova conexão com o cliente". Para isso, o cliente deve pesquisar por atualizações no servidor.
+Segundo \citeonline[P.~273]{grigorik2013high}, “o HTTP não fornece nenhuma maneira para o servidor iniciar uma nova conexão com o cliente”. Para isso, o cliente deve pesquisar por atualizações no servidor.
 
-Para uma atualização constante de informações entre o cliente e servidor, XHR nos fornece uma maneira simples. O cliente faz uma solicitação regular ao servidor solicitando atualizações e o servidor responde, podendo a resposta não conter dado. Esta técnica é conhecida por "Polling HTTP" ou "Ajax Polling". Tende a ser um desperdício de recursos de rede e de servidor, porem é fácil de implementar \cite{mccarthy2009comet}.
+Para uma atualização constante de informações entre o cliente e servidor, XHR nos fornece uma maneira simples. O cliente faz uma solicitação regular ao servidor solicitando atualizações e o servidor responde, podendo a resposta não conter dado. Esta técnica é conhecida por \emph{Polling HTTP} (ou \emph{Ajax Polling}). Tende a ser um desperdício de recursos de rede e de servidor, porem é fácil de implementar \cite{mccarthy2009comet}.
 
-No entanto, de acordo com \citeonline{Pimentel2012}, Polling HTTP é considerada uma boa solução para a entrega de informações em tempo real se o intervalo de entrega da mensagem for conhecido e  a taxa de transmissão de dados for constante. Porem, a consulta HTTP repete informações de cabeçalho significativas, aumentando assim a latência.
+No entanto, de acordo com \citeonline{Pimentel2012}, \emph{Polling HTTP} é considerada uma boa solução para a entrega de informações em tempo real se o intervalo de entrega da mensagem for conhecido e  a taxa de transmissão de dados for constante. Porem, a cada consulta HTTP, repete-se informações de cabeçalho aumentando assim a latência.
 
 Para reduzir a latência sem aumentar a carga do servidor, a solução é criar dois fluxos de comunicação entre o cliente e o servidor em uma técnica conhecida por \emph{Long Polling HTTP}. O primeiro fluxo é usado para receber mensagens e o segundo fluxo é usado para enviar mensagens. Para receber mensagens, o cliente pesquisa o servidor com um pedido de mensagens; se não houver mensagens, o servidor não responde com uma resposta imediatamente. O servidor coloca o pedido de pesquisa em espera por um período de tempo específico ou até que uma mensagem seja gerada pelo servidor  (Figura \ref{fig:longPolling}). A redução da latência é significativa, ao converter o tempo inoperante em uma espera criada pelo servidor, enquanto o cliente aguarda o potencial de uma mensagem que está sendo gerada \cite{gross2006introduction}.
 
@@ -117,11 +117,15 @@ Para reduzir a latência sem aumentar a carga do servidor, a solução é criar 
 
 Ainda segundo \citeonline{gross2006introduction}, o principal problema desta abordagem é que milhares de threads\footnote{Pequeno programa que trabalha como um subsistema, sendo uma forma de um processo se auto dividir em duas ou mais tarefas.} podem estar aguardando mensagens que possam ou não ser geradas, consumindo uma grande quantidade de Memória RAM\footnote{Tecnologia que permite o acesso aos arquivos armazenados no computador, responsável pela leitura dos conteúdos quando requeridos.}.
 
-Nesta técnica, a conexão entre o cliente e servidor fica ociosa até expirar ou até que o servidor tenha dados para enviar. Cabe ao cliente a responsabilidade pela reconexão para aguardar a próxima atualização. Esta técnica é mais eficiente que Ajax Polling, quando os dados são enviados com pouca frequência \cite{gutwin2011real}.
+Nesta técnica, a conexão entre o cliente e servidor fica ociosa até expirar ou até que o servidor tenha dados para enviar. Cabe ao cliente a responsabilidade pela reconexão para aguardar a próxima atualização. Esta técnica é mais eficiente que \emph{Ajax Polling}, quando os dados são enviados com pouca frequência \cite{gutwin2011real}.
 
-\subsection{XHR Streaming}
+\subsection{HTTP Streaming}
 
-% TODO: ENCONTRAR ESSE KRA PRA POR AQUI
+Esta técnica se aproveita de um tipo de conteúdo HTTP chamado “\emph{multipart}” que permite que um servidor web envie conteúdo para um navegador em várias peças (\emph{chunked encoding}), projetada para o carregamento incremental de documentos muito grandes \cite{gutwin2011}.
+
+A implementação mais simples desta técnica é conhecida por \emph{ForeverFrame}, onde tem-se um iframe dentro de uma página HTML recebendo atualizações constantes através do recebimento de partes de dados contendo uma mensagem completa em cada parte. Inicialmente esta técnica foi bastante condenada no Internet Explorer, pois este trata cada fragmento recebido como uma carga de página, disparando então, som de clique, do carregamento de página. A solução veio com a utilização do objeto \emph{htmlfile}\footnote{Interface para obter informações, examinar e modificar documentos HTML.} do ActiveX, tornando a técnica bastante popular \cite{souders2009even}.
+
+Esta técnica também pode ser explorada em uma requisição XHR (\emph{XHR Streaming}), permitindo que um servidor web envie conteúdo para um navegador em várias partes. Essencialmente, o navegador é enganado para manter a conexão do soquete aberta, com o servidor enviando cada atualização como parte de um todo. O uso de uma única conexão de soquete também reduz o número de cabeçalhos HTTP que precisam ser enviados para pedidos e respostas, reduzindo assim, a latência.
 
 \subsection{Server-Sent Event (SSE)}
 
