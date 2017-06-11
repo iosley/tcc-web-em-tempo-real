@@ -149,3 +149,26 @@ Suportado nativamente pela maioria dos navegadores modernos (vide Figura \ref{fi
 
 \subsection{WebSockets}
 
+O WebSocket oferece um canal de comunicação bidirecional que opera através de um único soquete HTTP, por onde cliente e servidor podem trocar mensagens simultaneamente. WebSocket também opera através do Protocolo de Camada de Soquetes Segura (SSL)\footnote{Protocolo criptográfico que confere segurança de comunicação na Internet.} ou com Segurança da Camada de Transporte (TLS)\footnote{Sucessor do SSL, é um protocolo de criptografia projetado para internet.} \cite{lombardi2015websocket}.
+
+Permitindo a transmissão bidirecional e orientada para mensagens de textos e dados binários entre cliente e servidor, é a API mais próxima de uma conexão pura entre o navegador e o servidor, exceto pela abstração da complexidade por trás de uma API simples fornecida pelo navegador, que oferece uma série de serviços adicionais como a interoperabilidade com a infra-estrutura HTTP existente e a capacidade de negociar subprotocolos \cite{grigorik2013high}.
+
+O protocolo WebSocket combinado com a API de WebSocket (WSAPI) traz uma alternativa ao \emph{HTTP Polling} para comunicação bi-direcional entre cliente e servidor, em uma única conexão TCP \cite{Saint-Andre2011}. Com o WSAPI, realiza-se uma única requisição HTTP para abrir uma conexão WebSocket  e reutiliza a mesma conexão no envio de mensagens do cliente para o servidor e do servidor para o cliente \cite{Wang2013}.
+
+\begin{figure}[!htb]
+	\centering
+	\caption{Comparativo entre os cenários de Polling HTTP e WebSocket}
+	\includegraphics[width=400px]{PollingVsWebsocket.png}
+	\fonte{\citeonline{Wang2013}}
+	\label{fig:pollingVSwebsocket}
+\end{figure}
+
+Segundo \citeonline{flanagan2011javascript}, não é seguro dar acesso a soquetes TCP de baixo nível para o cliente, porem a API WebSockets define uma alternativa segura, permitindo que o cliente crie conexões bidirecionais por soquetes com servidores que suportem o protocolo WebSocket.
+
+\begin{figure}[!htb]
+	\centering
+	\caption{Navegadores com suporte para WebSockets}
+	\includegraphics[width=400px]{Can_I_Use-Web_Sockets.png}
+	\fonte{http://caniuse.com/\#feat=websockets}
+	\label{fig:websocket}
+\end{figure}
