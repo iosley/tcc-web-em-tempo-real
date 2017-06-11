@@ -91,7 +91,7 @@ Uma lista de compatibilidade com os principais navegadores do mercado, pode ser 
 	\centering
 	\caption{Navegadores compatíveis com XHR2}
 	\includegraphics[width=400px]{XMLHttpRequest.png}
-	\fonte{http://caniuse.com/\#feat=xhr2}
+	\fonte{\citeonline{canIuse}}
 	\label{fig:xhr2}
 \end{figure}
 
@@ -143,7 +143,7 @@ Suportado nativamente pela maioria dos navegadores modernos (vide Figura \ref{fi
 	\centering
 	\caption{Navegadores compatíveis com Server-Sent Event}
 	\includegraphics[width=400px]{Can_I_Use-SSE.png}
-	\fonte{http://caniuse.com/\#feat=eventsource}
+	\fonte{\citeonline{canIuse}}
 	\label{fig:sse}
 \end{figure}
 
@@ -151,11 +151,23 @@ Suportado nativamente pela maioria dos navegadores modernos (vide Figura \ref{fi
 
 O WebSocket oferece um canal de comunicação bidirecional que opera através de um único soquete HTTP, por onde cliente e servidor podem trocar mensagens simultaneamente. WebSocket também opera através do Protocolo de Camada de Soquetes Segura (SSL)\footnote{Protocolo criptográfico que confere segurança de comunicação na Internet.} ou com Segurança da Camada de Transporte (TLS)\footnote{Sucessor do SSL, é um protocolo de criptografia projetado para internet.} \cite{lombardi2015websocket}.
 
-O WebSocket foi primeiro definido como “TCPConnection” na seção de Comunicação da especificação HTML5 por Ian Hickson\footnote{Principal escritor da especificação HTML5}. A especificação evoluiu e mudou para WebSocket, se tornando uma especificação independente, para manter a discussão focada \cite{lubbers2011pro}.
+O WebSocket foi primeiro definido como “TCPConnection” na seção de Comunicação da especificação HTML5 por Ian Hickson\footnote{Principal escritor da especificação HTML5}. A especificação evoluiu e mudou para WebSocket, se tornando uma especificação independente, para manter a discussão focada \cite{lubbers2011pro}. O protocolo define também duas nova URIs: "ws://" e "wss://" (para SSL ou TLS) tendo como portas padrão 80 ("ws://") e 443 ("wss://"), as mesmas do protocolo HTTP \cite{Saint-Andre2011}.
 
 Permitindo a transmissão bidirecional e orientada para mensagens de textos e dados binários entre cliente e servidor, é a API mais próxima de uma conexão pura entre o navegador e o servidor, exceto pela abstração da complexidade por trás de uma API simples fornecida pelo navegador, que oferece uma série de serviços adicionais como a interoperabilidade com a infra-estrutura HTTP existente e a capacidade de negociar subprotocolos \cite{grigorik2013high}.
 
-O protocolo WebSocket combinado com a API de WebSocket (WSAPI) traz uma alternativa ao \emph{HTTP Polling} para comunicação bi-direcional entre cliente e servidor, em uma única conexão TCP \cite{Saint-Andre2011}. Com o WSAPI, realiza-se uma única requisição HTTP para abrir uma conexão WebSocket  e reutiliza a mesma conexão no envio de mensagens do cliente para o servidor e do servidor para o cliente \cite{Wang2013}.
+Nesse contexto, \citeonline{grigorik2013high} ressaltar que o WebSocket é um protocolo totalmente funcional e autônomo que pode ser usado fora do navegador. No entanto, seu principal uso é no transporte bidirecional para aplicativos baseados na Web. Com uma API orientada à mensagem, o remetente fornece dados em texto ou binários e o destinatário é notificado da entrega quando toda a mensagem estiver disponível.
+
+Ainda segundo \citeonline{grigorik2013high}, para habilitar isso, o WebSocket usa um formato de enquadramento binário personalizado (Figura \ref{fig:websocketsRaw}), dividindo a mensagem em um ou mais quadros (\emph{Frames}) e transportando para o destinatário, que por sua vez, junta as partes e notifica o receptor uma vez que a mensagem inteira for recebida.
+
+\begin{figure}[!htb]
+	\centering
+	\caption{Frames do WebSocket}
+	\includegraphics[width=400px]{websocketsRaw.png}
+	\fonte{\cite{grigorik2013high}}
+	\label{fig:websocketsRaw}
+\end{figure}
+
+O protocolo WebSocket combinado com a API de WebSocket (WSAPI) traz uma alternativa ao \emph{HTTP Polling} para comunicação bi-direcional entre cliente e servidor, em uma única conexão TCP \cite{Saint-Andre2011}. Com o WSAPI, realiza-se uma única requisição HTTP para abrir uma conexão WebSocket  e reutiliza a mesma conexão no envio de mensagens do cliente para o servidor e do servidor para o cliente (Figura \ref{fig:pollingVSwebsocket}) \cite{Wang2013}.
 
 \begin{figure}[!htb]
 	\centering
@@ -165,7 +177,10 @@ O protocolo WebSocket combinado com a API de WebSocket (WSAPI) traz uma alternat
 	\label{fig:pollingVSwebsocket}
 \end{figure}
 
-Segundo \citeonline{flanagan2011javascript}, não é seguro dar acesso a soquete TCP de baixo nível para o cliente, porem a API WebSockets define uma alternativa segura, permitindo que o cliente crie conexões bidirecionais por soquetes com servidores que suportem o protocolo WebSocket.
+Segundo \citeonline{flanagan2011javascript}, não é seguro dar acesso a soquete TCP de baixo nível para o cliente, no entanto, a API WebSockets define uma alternativa segura, permitindo que o cliente crie conexões bidirecionais por soquetes com servidores que suportem o protocolo WebSocket.
+
+
+
 
 \begin{figure}[!htb]
 	\centering
