@@ -123,7 +123,7 @@ Esta técnica se aproveita de um tipo de conteúdo HTTP chamado “\emph{multipa
 
 A implementação mais simples desta técnica é conhecida por \emph{ForeverFrame}, onde tem-se um iframe dentro de uma página HTML recebendo atualizações constantes através do recebimento de partes de dados contendo uma mensagem completa em cada parte. Inicialmente esta técnica foi bastante condenada no Internet Explorer, pois este trata cada fragmento recebido como uma carga de página, disparando então, som de clique do carregamento de página. A solução veio com a utilização do objeto \emph{htmlfile}\footnote{Interface para obter informações, examinar e modificar documentos HTML.} do ActiveX, tornando a técnica bastante popular \cite{souders2009even}.
 
-Esta técnica também pode ser explorada em uma requisição XHR (\emph{XHR Streaming}), permitindo que um servidor web envie conteúdo para um navegador em várias partes. Essencialmente, o navegador é enganado para manter a conexão do soquete aberta, com o servidor enviando cada atualização como parte de um todo. O uso de uma única conexão de soquete também reduz o número de cabeçalhos HTTP que precisam ser enviados para pedidos e respostas, reduzindo assim, a latência \cite{gutwin2011real}.
+Esta técnica também pode ser explorada em uma requisição XHR (\emph{XHR Streaming}), permitindo que um servidor web envie conteúdo para um navegador em várias partes. Essencialmente, o navegador é enganado para manter a conexão do socket aberta, com o servidor enviando cada atualização como parte de um todo. O uso de uma única conexão de socket também reduz o número de cabeçalhos HTTP que precisam ser enviados para pedidos e respostas, reduzindo assim, a latência \cite{gutwin2011real}.
 
 Porem, se uma requisição \emph{XHR Streaming} continuar aberta por muito tempo, o navegador pode sofrer com o acumulo excessivo de memória RAM. No entanto, isto pode ser corrigido facilmente, simplesmente terminando a requisição e criando uma nova solicitação em um período de tempo definido ou após certa quantidade de mensagens recebidas \cite{souders2009even}.
 
@@ -149,7 +149,9 @@ Suportado nativamente pela maioria dos navegadores modernos (vide Figura \ref{fi
 
 \subsection{WebSockets}
 
-O WebSocket oferece um canal de comunicação bidirecional que opera através de um único soquete HTTP, por onde cliente e servidor podem trocar mensagens simultaneamente. WebSocket também opera através do Protocolo de Camada de Soquetes Segura (SSL)\footnote{Protocolo criptográfico que confere segurança de comunicação na Internet.} ou com Segurança da Camada de Transporte (TLS)\footnote{Sucessor do SSL, é um protocolo de criptografia projetado para internet.} \cite{lombardi2015websocket}.
+O WebSocket oferece um canal de comunicação bidirecional que opera através de um único socket HTTP, por onde cliente e servidor podem trocar mensagens simultaneamente. WebSocket também opera através do Protocolo de Camada de Soquetes Segura (SSL)\footnote{Protocolo criptográfico que confere segurança de comunicação na Internet.} ou com Segurança da Camada de Transporte (TLS)\footnote{Sucessor do SSL, é um protocolo de criptografia projetado para internet.} \cite{lombardi2015websocket}.
+
+O WebSocket foi primeiro definido como “TCPConnection” na seção de Comunicação da especificação HTML5 por Ian Hickson\footnote{Principal escritor da especificação HTML5}. A especificação evoluiu e mudou para WebSocket, se tornando uma especificação independente, para manter a discussão focada \cite{lubbers2011pro}.
 
 Permitindo a transmissão bidirecional e orientada para mensagens de textos e dados binários entre cliente e servidor, é a API mais próxima de uma conexão pura entre o navegador e o servidor, exceto pela abstração da complexidade por trás de uma API simples fornecida pelo navegador, que oferece uma série de serviços adicionais como a interoperabilidade com a infra-estrutura HTTP existente e a capacidade de negociar subprotocolos \cite{grigorik2013high}.
 
@@ -163,7 +165,7 @@ O protocolo WebSocket combinado com a API de WebSocket (WSAPI) traz uma alternat
 	\label{fig:pollingVSwebsocket}
 \end{figure}
 
-Segundo \citeonline{flanagan2011javascript}, não é seguro dar acesso a soquetes TCP de baixo nível para o cliente, porem a API WebSockets define uma alternativa segura, permitindo que o cliente crie conexões bidirecionais por soquetes com servidores que suportem o protocolo WebSocket.
+Segundo \citeonline{flanagan2011javascript}, não é seguro dar acesso a sockets TCP de baixo nível para o cliente, porem a API WebSockets define uma alternativa segura, permitindo que o cliente crie conexões bidirecionais por sockets com servidores que suportem o protocolo WebSocket.
 
 \begin{figure}[!htb]
 	\centering
