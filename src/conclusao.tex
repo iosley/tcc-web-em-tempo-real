@@ -1,5 +1,9 @@
 \section{CONCLUSÃO}
 
+% Este tópico trata da recapitulação sintética dos resultados da pesquisa, do alcance e as suas contribuições, bem como seu possível mérito. Deve ser breve e basear-se em dados comprovados.
+
 % TODO: Fazer a conclusão
 
-% Este tópico trata da recapitulação sintética dos resultados da pesquisa, do alcance e as suas contribuições, bem como seu possível mérito. Deve ser breve e basear-se em dados comprovados.
+%Em última análise, todos esses métodos para fornecer dados em tempo real envolvem cabeçalhos de solicitação HTTP e resposta, que contêm muitos dados de cabeçalho adicionais e desnecessários e apresentam latência. Além disso, a conectividade full-duplex requer mais do que apenas a conexão a jusante do servidor para o cliente. Em um esforço para simular a comunicação full-duplex em HTTP half-duplex, muitas das soluções de hoje usam duas conexões: uma para downstream e outra para upstream. A manutenção e coordenação destas duas conexões introduz altos custos gerais em termos de consumo de recursos e acrescenta muita complexidade. Simplificando, o HTTP não foi projetado para comunicação full-duplex em tempo real como você pode ver na Figura 7-1, que mostra as complexidades associadas à construção de um aplicativo da Web que exibe dados em tempo real a partir de dados de back-end Fonte usando um modelo de publicação / assinatura sobre HTTP half-duplex \cite{lubbers2011pro}.
+
+%É ainda pior quando tenta dimensionar essas soluções. Simular a comunicação do navegador bidirecional através de HTTP é propenso a erros e complexo e toda essa complexidade não escala. Mesmo que seus usuários finais possam estar desfrutando de algo que se parece com uma aplicação web em tempo real, essa experiência "em tempo real" tem um preço alto. É um preço que você pagará em latência adicional, tráfego de rede desnecessário e um arrasto no desempenho da CPU \cite{lubbers2011pro}.
