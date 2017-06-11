@@ -1,7 +1,5 @@
 \section{RESULTADOS E DISCUSSÕES}
 
-%pré javascript
-
 Nos primeiros dias da \emph{World Wide Web}, um navegador precisava apresentar apenas alguns tipos de dados aos usuários. Para não ser limitado por esses tipos de dados, os desenvolvedores trabalharam duro para estender os navegadores para que dados em outros formatos pudessem ser renderizados no computador cliente. Uma maneira de resolver o problema era permitir que o navegador, ao reconhecer um arquivo recebido de um tipo específico, iniciar um aplicativo separado na máquina cliente para renderizar o conteúdo. Desde que este aplicativo auxiliar tenha sido instalado no computador cliente, o navegador iniciará o programa e enviará o arquivo recebido para esse programa \cite{zammetti2007brief}.
 
 A primeira solução para tornar a web mais dinâmica foi o \emph{“Common Gateway Interface”} (CGI), que permite a criação de programas que executem quando um usuário faz uma requisição. Porem, CGI não é a solução mais segura para criação de páginas web pois permite que seja executado um programa em seu sistema operacional e usuários maliciosos podem explorar isto com algum exploit\footnote{Uma sequência de comandos que tomam vantagem de um defeito, falha ou vulnerabilidade a fim de causar um comportamento acidental ou imprevisto.} e executar operações indesejadas \cite{Asleson2006}.
@@ -9,8 +7,6 @@ A primeira solução para tornar a web mais dinâmica foi o \emph{“Common Gate
 Ainda segundo \citeonline{Asleson2006}, em maio de 1995 John Gage e Andreessen anunciam o nascimento da linguagem de programação Java. O navegador Netscape era dominante na época e ofereceria suporte para esta nova linguagem. Dentro de alguns meses, milhares de pessoas já haviam baixado o Java em seus computadores, abrindo novos caminhos para páginas web dinâmicas.
 
 Applets\footnote{Pequeno software que executa uma atividade específica dentro de outro programa maior.} permitem que pequenas aplicações Java possam ser incluídas nas páginas web e executadas através da \emph{Java Virtual Machine} (JVM). Applets são executadas no modelo de segurança de “caixa de areia” (\emph{sandbox}), não podem carregar bibliotecas nativas e são tipicamente impedidas de ler ou gravar no disco \cite{Asleson2006}.
-
-% flash aqui
 
 Ainda em maio de 1995, Brendan Eich, um funcionário da Netscape\footnote{Empresa de serviços de computadores nos EUA.} na época, desenvolveu uma linguagem de script em dez dias que se tornou conhecida como Mocha. Este nome original foi dado pelo fundador da Netscape. Pouco depois, o nome foi avaliado e renomeado como Livescript. Mais tarde naquele ano em dezembro, a Netscape recebeu uma licença de marca registrada da Sun\footnote{Fabricante de computadores, semicondutores e software com sede em Santa Clara, Califórnia, no Silicon Valley.}. Desta vez, o nome mudou para JavaScript \cite{neer2013history}.
 
@@ -20,8 +16,9 @@ A primeira versão, o JavaScript 1.0, estreou no navegador Netscape 2 ainda em 1
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[width=350px]{Netscape_Navigator_2.png}
-	\caption{Navegador Netscap 2}
+	\caption{Navegador Netscape 2}
+	\includegraphics[width=400px]{Netscape_Navigator_2.png}
+	\fonte{\citeonline{Softwsp2016netscape}}
 	\label{fig:netscape}
 \end{figure}
 
@@ -68,10 +65,9 @@ De fato, o envio de dados assíncronos ao servidor e a recepção de dados adici
 
 \begin{figure}[!htb]
 	\centering
+	\caption{Comparação entre o modelo clássico e o modelo Ajax}
 	\subfloat[Modelo clássico de aplicação WEB  (síncrono)]{
-		\raisebox{0.15\height}{
-			\includegraphics[width=210px]{default-pattern.jpg}
-		}
+		\includegraphics[width=210px]{default-pattern.jpg}
 		\label{defaultPattern}
 	}
 	\hfill
@@ -79,7 +75,7 @@ De fato, o envio de dados assíncronos ao servidor e a recepção de dados adici
 		\includegraphics[width=210px]{ajax-pattern.png}
 		\label{ajaxPattern}
 	}
-	\caption{Comparação entre o modelo clássico e o modelo Ajax}
+	\fonte{\citeonline{Garrett2005}}
 	\label{defaultVsAjax}
 \end{figure}
 
@@ -93,8 +89,9 @@ Uma lista de compatibilidade com os principais navegadores do mercado, pode ser 
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[width=400px]{XMLHttpRequest.png}
 	\caption{Navegadores compatíveis com XHR2}
+	\includegraphics[width=400px]{XMLHttpRequest.png}
+	\fonte{http://caniuse.com/\#feat=xhr2}
 	\label{fig:xhr2}
 \end{figure}
 
@@ -110,8 +107,9 @@ Para reduzir a latência sem aumentar a carga do servidor, a solução é criar 
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[width=400px]{Long-Polling.png}
 	\caption{Long Polling HTTP}
+	\includegraphics[width=400px]{Long-Polling.png}
+	\fonte{\citeonline{Hanson2014long}}
 	\label{fig:longPolling}
 \end{figure}
 
@@ -139,20 +137,15 @@ Normatizado pelo W3C em fevereiro de 2015, apresenta a interface \emph{EventSour
 	Sob o capô, SSE oferece uma implementação eficiente e cruzada do \emph{XHR Streaming}; A entrega real das mensagens é feita através de uma única conexão HTTP de longa duração. No entanto, ao contrário de lidar com transmissão de XHR por conta própria, o navegador lida com todo o gerenciamento de conexão e análise de mensagens, permitindo que nossos aplicativos se concentrem na lógica de negócios! Em suma, a SSE torna o trabalho com dados em tempo real simples e eficiente \cite[P.~279]{grigorik2013high}.
 \end{citacao}
 
-Suportado nativamente pela maioria dos navegadores modernos (Figura \ref{fig:sse}); foi uma adição antecipada à especificação HTML5. No entanto, a interface \emph{EventSource} é simples, de modo que pode ser emulada através de uma biblioteca de JavaScript opcional (\emph{Polyfill}\footnote{Biblioteca JavaScript que implementa o padrão HTML5, quer seja um padrão estabelecido para todos os navegadores ou não.}) para navegadores que não o suportam nativamente \cite{grigorik2013high}.
+Suportado nativamente pela maioria dos navegadores modernos (vide Figura \ref{fig:sse}); foi uma adição antecipada à especificação HTML5. No entanto, a interface \emph{EventSource} é simples, de modo que pode ser emulada através de uma biblioteca de JavaScript opcional (\emph{Polyfill}\footnote{Biblioteca JavaScript que implementa o padrão HTML5, quer seja um padrão estabelecido para todos os navegadores ou não.}) para navegadores que não o suportam nativamente \cite{grigorik2013high}.
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[width=400px]{Can_I_Use-SSE.png}
 	\caption{Navegadores compatíveis com Server-Sent Event}
+	\includegraphics[width=400px]{Can_I_Use-SSE.png}
+	\fonte{http://caniuse.com/\#feat=eventsource}
 	\label{fig:sse}
 \end{figure}
 
-% TODO: Completar o texto
-------------------------------------------------------------------------------------
-------------------------------- PAREI AQUI ----------------------------------------
-------------------------------------------------------------------------------------
+\subsection{WebSockets}
 
-\subsection{Web Sockets}
-
-% TODO: Esse kra vai ficar por ultimo
