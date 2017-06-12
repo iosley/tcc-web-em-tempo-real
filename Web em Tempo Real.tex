@@ -4,25 +4,40 @@
     12pt,
     oneside,
     english,			% idioma adicional para hifenização
-    brazil,
-    sumario=tradicional
+    brazil
 ]{abntex2}
 
 % Packages
-\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+%\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage{mathptmx} % Fonte Times new Roman
 \usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
 \usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
 \usepackage{nomencl} 			% Lista de simbolos
 \usepackage{color}				% Controle das cores
 \usepackage{graphicx}			% Inclusão de gráficos
 \graphicspath{{src/assets/}}  % Local das imagens
-\usepackage{subfig}
+\usepackage{subfig} % Inclusão de subfiguras
 \usepackage{microtype} 			% para melhorias de justificação
-
 % Pacotes de citações
 %\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
-\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+\usepackage[
+	alf,
+	abnt-title-command=yes,
+	abnt-emphasize=bf % Titulos dos das referencias em negrito
+]{abntex2cite}	% Citações padrão ABNT
 % End Packages
+
+% Formatando titulos
+\usepackage{titlesec}
+
+\titleformat{\section}
+{\normalfont\bfseries}
+{\thesection}{12pt}{}
+
+\titleformat{\subsection}
+{\normalfont\bfseries}
+{\thesubsection}{12pt}{}
+% ------------------------
 
 % Configurando margens
 \setlrmarginsandblock{3cm}{2cm}{*} % margem esquerda e direita
@@ -30,7 +45,7 @@
 \checkandfixthelayout
 
 % Meta
-\title{WEB EM TEMPO REAL \\Soluções para comunicação em tempo real entre clientes e servidores.}
+\title{WEB EM TEMPO REAL: Soluções para comunicação em tempo real entre clientes e servidores.}
 \author{Iosley Carlos Silva}
 \date{\today}
 % End Meta
@@ -65,8 +80,8 @@
 	
 \maketitle
 
-\input{./src/resumo}
 \input{./src/abstract}
+\input{./src/resumo}
 
 \input{./src/introducao}
 
@@ -78,18 +93,19 @@
 
 \input{./src/conclusao}
 
-{ \clearpage
+{
+	\clearpage
 	\bibliography{./src/referencias}
 }
 
-%{ \clearpage
-	%\listoftables
+%{
+%	\clearpage
+%	\listoftables
 %}
 
-{ \clearpage
+{
+	\clearpage
 	\listoffigures
 }
 
 \end{document}
-
-% TODO: verificar se precisa de numeração de páginas
